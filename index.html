@@ -24,7 +24,7 @@
 
 <body>
   <canvas id="gauge"></canvas>
-
+  <button id="request">request</button>
   <script>
     const vconsole = new VConsole();
     var opts = {
@@ -72,15 +72,34 @@
 
     const hasDeviceMotion = 'ondevicemotion' in window;
     console.log(hasDeviceMotion)
-    console.log('hljijoiu')
-    window.addEventListener('devicemotion', function (event) {
-      console.log('heljolei')
-      console.log(event);
-      alert('heloo')
-      // var acceleration = event.accelerationIncludingGravity;
-      // console.log(acceleration)
+    // console.log('hljijoiu')
+    // window.addEventListener('devicemotion', function (event) {
+    //   console.log('heljolei')
+    //   console.log(event);
+    //   alert('heloo')
+    //   // var acceleration = event.accelerationIncludingGravity;
+    //   // console.log(acceleration)
 
-    }, false);
+    // }, false);
+
+
+    function permission () {
+        if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
+            DeviceMotionEvent.requestPermission()
+                .then( response => {
+                if ( response == "granted" ) {
+                    window.addEventListener( "devicemotion", (e) => {
+                      console.log(e);
+                    })
+                }
+            })
+                .catch( console.error )
+        } else {
+            alert( "DeviceMotionEvent is not defined" );
+        }
+    }
+    const btn = document.getElementById( "request" );
+    btn.addEventListener( "click", permission );
   </script>
 </body>
 </html>
