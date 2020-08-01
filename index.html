@@ -92,6 +92,7 @@
                       speedX += acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
                       lastTimestamp = currentTime;
                       console.log(speedX);
+                      guage.set(speedX)
                     })
                 }
             })
