@@ -72,24 +72,26 @@
 
     const hasDeviceMotion = 'ondevicemotion' in window;
     console.log(hasDeviceMotion)
-    // console.log('hljijoiu')
-    // window.addEventListener('devicemotion', function (event) {
-    //   console.log('heljolei')
-    //   console.log(event);
-    //   alert('heloo')
-    //   // var acceleration = event.accelerationIncludingGravity;
-    //   // console.log(acceleration)
 
-    // }, false);
-
-
+    var lastTimestamp;
+    var speedX = 0;
     function permission () {
         if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
             DeviceMotionEvent.requestPermission()
                 .then( response => {
                 if ( response == "granted" ) {
                     window.addEventListener( "devicemotion", (e) => {
-                      console.log(e);
+                      var acceleration = event.accelerationIncludingGravity;
+                      // var acceleration = event.acceleration;
+
+                      var currentTime = new Date().getTime();
+                      if (lastTimestamp === undefined) {
+                        lastTimestamp = new Date().getTime();
+                        return;
+                      }
+                      speedX += acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+                      lastTimestamp = currentTime;
+                      console.log(speedX);
                     })
                 }
             })
