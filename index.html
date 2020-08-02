@@ -82,17 +82,19 @@
                 if ( response == "granted" ) {
                     window.addEventListener( "devicemotion", (e) => {
                       var acceleration = event.accelerationIncludingGravity;
+                      console.log(acceleration)
+                      gauge.set(acceleration.x)
                       // var acceleration = event.acceleration;
 
-                      var currentTime = new Date().getTime();
-                      if (lastTimestamp === undefined) {
-                        lastTimestamp = new Date().getTime();
-                        return;
-                      }
-                      speedX += acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
-                      lastTimestamp = currentTime;
-                      console.log(speedX);
-                      gauge.set(speedX)
+                      // var currentTime = new Date().getTime();
+                      // if (lastTimestamp === undefined) {
+                      //   lastTimestamp = new Date().getTime();
+                      //   return;
+                      // }
+                      // speedX += acceleration.x / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+                      // lastTimestamp = currentTime;
+                      // console.log(speedX);
+                      // gauge.set(speedX)
                     })
                 }
             })
