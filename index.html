@@ -82,8 +82,12 @@
                 if ( response == "granted" ) {
                     window.addEventListener( "devicemotion", (e) => {
                       var acceleration = event.accelerationIncludingGravity;
-                      console.log(acceleration)
-                      gauge.set(acceleration.x)
+                      // console.log(acceleration)
+                      console.log(acceleration.x);
+                      console.log(acceleration.y);
+                      console.log(acceleration.z);
+                      gauge.set(Math.abs(acceleration.x))
+
                       // var acceleration = event.acceleration;
 
                       // var currentTime = new Date().getTime();
