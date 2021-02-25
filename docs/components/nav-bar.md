@@ -2,6 +2,8 @@
 
 
 ```tsx
+import { NavBar } from 'tant-rn';
+
 const NavbarComponent = () => {
   return (
     <NavBar
