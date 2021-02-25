@@ -22,6 +22,7 @@ const NavbarComponent = () => {
 |------|------|------|------|
 | title | 标题 | *string* | `''` |
 | rightText | 右侧文案 | *string* | `''` |
+| border | 是否显示下边框 | *boolean* | `false` |
 | rightIcon | 右侧Icon | RightIcon | - |
 
 
